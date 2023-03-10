@@ -1,6 +1,7 @@
 package com.example.listadelacompra__miversion.ui.theme
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,10 +17,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EstadoElementoDeLista(elementoDeLista:Productos) {
+fun EstadoElementoDeLista(elementoDeLista:Productos, onClose: (Productos) -> Unit) {
 
-    ElementoDeLista(nombreElemento = elementoDeLista.name)
-
+    ElementoDeLista(
+        nombreElemento = elementoDeLista.name,
+        onClose = { onClose(elementoDeLista) },
+    )
 }
 
 
@@ -27,15 +30,16 @@ fun EstadoElementoDeLista(elementoDeLista:Productos) {
 @Composable
 fun ElementoDeLista(
     nombreElemento: String,
-    modifier: Modifier = Modifier)
+    modifier: Modifier = Modifier,
+    onClose: () -> Unit,)
 {
     Card(
         Modifier
             .fillMaxWidth()
             .padding(10.dp)
     ) {
-        Row(
-            modifier.background(MaterialTheme.colors.secondary),
+        Row( modifier.background(MaterialTheme.colors.secondary)
+            .clickable { modifier.background(Color.Green)  },
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
@@ -44,6 +48,9 @@ fun ElementoDeLista(
                     .weight(1f)
                     .padding(start = 16.dp)
             )
+            IconButton(onClick = onClose ) {
+                Icon(Icons.Filled.Close, contentDescription = "Close")
+            }
             }
         }
     }

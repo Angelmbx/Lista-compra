@@ -11,13 +11,18 @@ import com.example.listadelacompra__miversion.ui.theme.Productos
 fun ListaDeElementosCompra (
     list: List<Productos>,
     modifier: Modifier = Modifier,
+    cancelarProductos: (Productos) -> Unit,
 ){
     LazyColumn(modifier){
         items(
             items = list,
             key = {it.key}
         ) {elemento ->
-            EstadoElementoDeLista(elementoDeLista = elemento)
+            EstadoElementoDeLista(elementoDeLista = elemento,
+                onClose = {
+                    cancelarProductos(it)
+                })
+
         }
     }
 

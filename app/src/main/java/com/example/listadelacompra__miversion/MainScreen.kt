@@ -21,7 +21,8 @@ fun MainScreen () {
 
         ListaDeElementosCompra(
             list = lista,
-            Modifier.padding(paddingValues),
+            cancelarProductos = { lista.remove(it) },
+            modifier = Modifier.padding(paddingValues),
         )
     }
 
