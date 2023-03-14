@@ -1,5 +1,6 @@
 package com.example.listadelacompra__miversion.ui.theme
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -9,7 +10,9 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,7 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EstadoElementoDeLista(elementoDeLista:Productos, onClose: (Productos) -> Unit) {
+fun EstadoElementoDeLista(elementoDeLista: Productos, onClose: (Productos) -> Unit) {
 
     ElementoDeLista(
         nombreElemento = elementoDeLista.name,
@@ -26,20 +29,26 @@ fun EstadoElementoDeLista(elementoDeLista:Productos, onClose: (Productos) -> Uni
 }
 
 
-
 @Composable
 fun ElementoDeLista(
     nombreElemento: String,
     modifier: Modifier = Modifier,
-    onClose: () -> Unit,)
-{
+    onClose: () -> Unit,
+) {
     Card(
         Modifier
             .fillMaxWidth()
             .padding(10.dp)
     ) {
-        Row( modifier.background(MaterialTheme.colors.secondary)
-            .clickable { modifier.background(Color.Green)  },
+        val color1 = MaterialTheme.colors.secondary
+        var color by remember { mutableStateOf(color1) }
+
+        Row(
+            modifier
+                .background(color)
+                .padding(0.dp, 15.dp)
+                .clickable { color = Color.Green },
+
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
@@ -48,9 +57,9 @@ fun ElementoDeLista(
                     .weight(1f)
                     .padding(start = 16.dp)
             )
-            IconButton(onClick = onClose ) {
+            IconButton(onClick = onClose) {
                 Icon(Icons.Filled.Close, contentDescription = "Close")
-            }
             }
         }
     }
+}
