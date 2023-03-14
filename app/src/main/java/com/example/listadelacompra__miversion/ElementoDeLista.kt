@@ -57,7 +57,7 @@ fun ElementoDeLista(
                     .weight(1f)
                     .padding(start = 16.dp)
             )
-            IconButton(onClick = onClose) {
+            IconButton(onClick = { color = color1}) {
                 Icon(Icons.Filled.Close, contentDescription = "Close")
             }
         }
