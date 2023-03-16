@@ -40,14 +40,15 @@ fun ElementoDeLista(
             .fillMaxWidth()
             .padding(10.dp)
     ) {
-        val color1 = MaterialTheme.colors.secondary //creo variable porque no me deja meterlo en el mutablestate directamente
+        val color1 = MaterialTheme.colors.primaryVariant //creo variable porque no me deja meterlo en el mutablestate directamente
         var color by remember { mutableStateOf(color1) }
+        val marcado = MaterialTheme.colors.primary
 
         Row(
             modifier
                 .background(color) //asigno color de la tarjeta a la variable mutable
                 .padding(0.dp, 15.dp)
-                .clickable { color = Color.Green },
+                .clickable { color = marcado },
 
             verticalAlignment = Alignment.CenterVertically
         ) {
