@@ -41,7 +41,7 @@ fun ElementoDeLista(
             .padding(10.dp)
     ) {
         val colorInicial = MaterialTheme.colors.primaryVariant //creo variable porque no me deja meterlo en el mutablestate directamente
-       // var color by rememberSaveable { mutableStateOf(color1) } haciendolo así no me abre la aplicación
+        // var color by rememberSaveable { mutableStateOf(colorInicial) } //haciendolo así no me abre la aplicación
         var color by remember { mutableStateOf(colorInicial) } //así sí, pero no mantiene el estado (solo scroleando ya lo puedes comprobar)
         val marcado = MaterialTheme.colors.primary
 
@@ -67,3 +67,4 @@ fun ElementoDeLista(
         }
     }
 }
+
