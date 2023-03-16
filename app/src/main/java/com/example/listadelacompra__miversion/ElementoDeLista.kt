@@ -40,13 +40,16 @@ fun ElementoDeLista(
             .fillMaxWidth()
             .padding(10.dp)
     ) {
-        val color1 = MaterialTheme.colors.primaryVariant //creo variable porque no me deja meterlo en el mutablestate directamente
-        var color by remember { mutableStateOf(color1) }
+        val colorInicial = MaterialTheme.colors.primaryVariant //creo variable porque no me deja meterlo en el mutablestate directamente
+       // var color by rememberSaveable { mutableStateOf(color1) } haciendolo así no me abre la aplicación
+        var color by remember { mutableStateOf(colorInicial) } //así sí, pero no mantiene el estado (solo scroleando ya lo puedes comprobar)
         val marcado = MaterialTheme.colors.primary
+
+
 
         Row(
             modifier
-                .background(color) //asigno color de la tarjeta a la variable mutable
+                .background(color) //asigno como color de la tarjeta la variable mutable
                 .padding(0.dp, 15.dp)
                 .clickable { color = marcado },
 
@@ -58,7 +61,7 @@ fun ElementoDeLista(
                     .weight(1f)
                     .padding(start = 16.dp)
             )
-            IconButton(onClick = { color = color1}) {
+            IconButton(onClick = { color = colorInicial}) {
                 Icon(Icons.Filled.Close, contentDescription = "Close")
             }
         }
