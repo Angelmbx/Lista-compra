@@ -19,8 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 @Composable
 fun MainScreen () {
-    val colorInicial = MaterialTheme.colors.secondary
-    var colorPulsado by remember{ mutableStateOf(colorInicial) }
+
 
 
     Scaffold(
