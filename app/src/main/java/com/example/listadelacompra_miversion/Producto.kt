@@ -1,20 +1,38 @@
-package com.example.listadelacompra__miversion.ui.theme
+package com.example.listadelacompra_miversion
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 
 //una lista con contador en cada elemento de la lazy column. ¿Posible examen?
 
-data class Productos( val key: Int, val name: String){
-    var seleccionado by mutableStateOf(false)
+
+val colorInicial = Color(0xFFD8CEB4)
+val colorPulsado = Color(0xFF807A6C)
+
+data class Producto( val key: Int, val name: String){
+    var color by mutableStateOf(colorInicial)
 }
 
 
-fun getFakeListaDeElementos() : List<Productos> {
-    var lista = List(30) {i-> Productos(i, "Producto $i")}
+fun getFakeListaDeElementos() : List<Producto> {
+    val lista = List(30) {i-> Producto(i, "Producto $i") }
     return lista
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* fun getItemList() = listOf(
     ShoppingListProduct(

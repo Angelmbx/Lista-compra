@@ -1,26 +1,22 @@
-package com.example.listadelacompra__miversion
-import android.graphics.Color
+package com.example.listadelacompra_miversion
+
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.modifier.modifierLocalOf
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.example.listadelacompra__miversion.ui.theme.getFakeListaDeElementos
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 @Composable
 fun MainScreen () {
 
-
+    val viewModel: ViewModel = ViewModel()
+   // val lista = remember { getFakeListaDeElementos().toMutableStateList() }
 
     Scaffold(
         topBar = {
@@ -49,12 +45,12 @@ fun MainScreen () {
         floatingActionButtonPosition = FabPosition.Center
     ) {paddingValues ->
 
-        val lista = remember { getFakeListaDeElementos().toMutableStateList() }
-
         ListaDeElementosCompra(
-            list = lista,
-            cancelarProductos = { lista.remove(it) },
+            list = viewModel.lista,
+            cancelarProductos = { viewModel.remove(it) },
             modifier = Modifier.padding(paddingValues),
+            onChangeColor = {
+                viewModel.cambiarColor(it) }
         )
     }
 

@@ -1,4 +1,4 @@
-package com.example.listadelacompra__miversion
+package com.example.listadelacompra_miversion
 
 import org.junit.Test
 
